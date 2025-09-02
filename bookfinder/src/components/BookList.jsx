@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import BookCard from "./BookCard";
 
-function BookList({ books }) {
-  if (!books || books.length === 0) {
+function BookList({ books, message }) {
+  if (!books || books.length === 0 && message=== false) {
     return <p>No results found.</p>;
   }
 

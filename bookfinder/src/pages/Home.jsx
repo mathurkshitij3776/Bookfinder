@@ -9,7 +9,7 @@ function Home() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [message, setMessage] = useState(true);
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
@@ -20,17 +20,20 @@ function Home() {
       setError(err.message);
     } finally {
       setLoading(false);
+      setMessage(false);
+
     }
   };
 return (
   // We use flexbox to center all child elements
   <div className="p-4 max-w-3xl mx-auto flex flex-col items-center">
     {/* The text-center class on h1 is no longer needed as the parent handles centering */}
-    <h1 className="text-2xl text-black font-bold mb-4">📚 Book Finder</h1>
+    <h1 className="text-2xl text-white font-bold mb-4">📚 Book Finder</h1>
     <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
     {loading && <Loader />}
     {error && <p className="text-red-500">{error}</p>}
-    <BookList books={results} />
+    
+    <BookList books={results} message = {message}/>
   </div>
 )};
 
